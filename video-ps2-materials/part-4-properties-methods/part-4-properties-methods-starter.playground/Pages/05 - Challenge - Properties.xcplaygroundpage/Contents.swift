@@ -9,9 +9,22 @@
 */
 
 // TODO: Write solution here
-
-
-
+struct Temperature {
+  var fahrenheit: Double {
+    didSet {
+      if fahrenheit > 100 {
+        print("is \(fahrenheit) Fahrenheit!")
+      }
+    }
+  }
+  
+  var celsius: Double {
+    get { return (fahrenheit - 32) / 1.8 }
+    set { fahrenheit = newValue * 1.8 + 32 }
+  }
+  
+}
+  
 /*:
  ## Challenge 2
  Modify the Fahrenheit property to print out a warning message if it is set to above 100 degrees.
@@ -35,7 +48,22 @@ enum Season: String, CaseIterable {
 enum Month: Int {
   case january = 1, february, march, april, may, june, july, august, september, october, november, december
   
-  // TODO: Write solution here
+  var monthsUntilJingleBells: Int {
+    Month.december.rawValue - rawValue
+  }
+  
+  var season: Season {
+    switch self {
+    case .december, .january, .february:
+      return .winter
+    case .march, .april, .may:
+      return .spring
+    case .june, .july, .august:
+      return .summer
+    case .september, .october, .november:
+      return .autumn
+    }
+  }
 }
 
 
