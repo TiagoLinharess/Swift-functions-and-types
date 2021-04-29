@@ -17,9 +17,45 @@
 
 
 // TODO: Write solution here
+extension Numeric {
+  var squared: Self {self * self}
+}
 
+protocol Shape {
+  var area: Double { get }
+}
 
+struct Square: Shape {
+  let side: Double
+  
+  var area: Double {
+    side.squared
+  }
+}
 
+struct Triangle: Shape {
+  let base: Double
+  let height: Double
+  
+  var area: Double {
+    0.5 * base * height
+  }
+}
+
+struct Circle: Shape {
+  let radius: Double
+  
+  var area: Double {
+    .pi * radius.squared
+  }
+}
+
+let square = Square(side: 4)
+let triangle = Triangle(base: 3, height: 5)
+let circle = Circle(radius: 2)
+let shapes: [Shape] = [square, triangle, circle]
+
+print(shapes.map { $0.area })
 /*:
  ## Challenge 2 Extending a Protocol
  Below is a function that takes a Double and tells you if it is an integer by comparing the Double to a rounded version of itself.
@@ -35,7 +71,17 @@ func isInteger(number: Double) -> Bool {
 
 // TODO: Write solution here
 
+extension FloatingPoint {
+  var isInteger: Bool {
+    rounded() == self
+  }
+}
 
+let double: Double = 5.0
+let float: Float = 3.7
+
+double.isInteger
+float.isInteger
 
 
 

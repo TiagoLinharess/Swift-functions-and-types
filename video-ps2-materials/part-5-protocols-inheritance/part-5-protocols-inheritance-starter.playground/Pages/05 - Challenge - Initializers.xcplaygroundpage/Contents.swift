@@ -10,7 +10,17 @@
  */
 
 // TODO: Write solution here
-
+class Animal {
+  var name: String
+  
+  required init(name: String) {
+    self.name = name
+  }
+  
+  func speak() {
+    
+  }
+}
 /*:
  Create a class named `Dog` that…
  1. inherits from `Animal`
@@ -20,7 +30,27 @@
  */
 
 // TODO: Write solution here
-
+class Dog: Animal {
+  var tricksLearnedCount: Int
+  
+  convenience required init(name: String) {
+    self.init(name: name, tricksLearnedCount: 0)
+  }
+  
+  convenience init(tricksLearnedCount: Int = .max) {
+    self.init(name: "Tramp", tricksLearnedCount: tricksLearnedCount)
+  }
+  
+  init(name: String, tricksLearnedCount: Int) {
+    self.tricksLearnedCount = tricksLearnedCount
+    super.init(name: name)
+    speak()
+  }
+  
+  override func speak() {
+    print("Hi \(name)!")
+  }
+}
 /*:
  Add a second (non-required) initializer to `Dog` that takes both the `name` and `numTricksLearned` as parameters. Then call this initializer from the required initializer.
  */

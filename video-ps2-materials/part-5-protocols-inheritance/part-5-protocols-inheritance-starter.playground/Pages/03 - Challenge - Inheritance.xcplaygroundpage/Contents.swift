@@ -25,9 +25,44 @@ Create one subclass of your choice of `WildAnimal` or `Pet`. It should do at lea
 
 
 // TODO: Write solution here
+class Animal {
+  func speak() {
+    print("Animal is speaking!")
+  }
+}
 
+class WildAnimal: Animal {
+  let isPoisonous: Bool
+  
+  init(isPoisonous: Bool) {
+    self.isPoisonous = isPoisonous
+  }
+}
 
+class Pet: Animal {
+  var name: String
+  
+  init(name: String) {
+    self.name = name
+  }
+  
+  func play() {
+    print("Pet \(name) is playing!")
+  }
+  
+  override func speak() {
+    print("Pet \(name) is Speaking!")
+  }
+}
 
+class Dog: Pet {
+  override func speak() {
+    print("Dog \(name) is speaking!")
+  }
+  override func play() {
+    print("Dog \(name) is playing!")
+  }
+}
 /*:
 ## Challenge 2 - Casting
 - Create at least one instance of each class from the first challenge.
@@ -39,7 +74,26 @@ Create one subclass of your choice of `WildAnimal` or `Pet`. It should do at lea
 
 
 // TODO: Write solution here
+let lion = Animal()
+let snake = WildAnimal(isPoisonous: true)
+let loro = Pet(name: "Loro")
+let amora = Dog(name: "Amora")
 
+let animals = [lion, snake, loro, amora]
 
+func getAnimalActivity(animal: Animal) {
+  if let wild = animal as? WildAnimal {
+    print("This wild animal is \(wild.isPoisonous ? "poisonous" : "not poisonous")")
+  } else if let dog = animal as? Dog {
+    dog.play()
+  } else if let pet = animal as? Pet {
+    print("The pet \(pet.name) is not a dog, but he can still play")
+  } else {
+    print("This animal has not been specified")
+  }
+}
 
+animals.map { (animal) -> Void in
+  getAnimalActivity(animal: animal)
+}
 //: [⇒ Next: 04 - Initializers](@next)
